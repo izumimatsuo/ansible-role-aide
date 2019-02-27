@@ -9,11 +9,6 @@
     dest: /etc/aide.conf
     mode: 0600
 
-    # - name: init aide database
-    #  command: aide --init
-    #  args:
-    #    creates: /var/lib/aide/aide.db.gz
-
 - name: set aide database
   shell: aide --init; mv /var/lib/aide/aide.db{.new,}.gz
   args:
