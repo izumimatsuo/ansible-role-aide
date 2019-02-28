@@ -313,11 +313,11 @@ DATAONLY =  p+n+u+g+s+acl+selinux+xattrs+sha256
 #!/var/log/httpd/
 
 # include files
-{% for item in aide_include_files %}
+{% for item in aide_include_list %}
 {{ item }}
 {% endfor %}
 
 # exclude files
-{% for item in aide_exclude_files %}
+{% for item in aide_exclude_list %}
 !{{ item }}
 {% endfor %}
