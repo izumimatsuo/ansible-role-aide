@@ -105,7 +105,7 @@ DATAONLY =  p+n+u+g+s+acl+selinux+xattrs+sha256
 
 # Admin's dot files constantly change, just check perms.
 /root/\..* PERMS
-!/root/\.ansible.*
+
 # Otherwise get all of /root.
 /root/   CONTENT_EX
 
@@ -190,7 +190,7 @@ DATAONLY =  p+n+u+g+s+acl+selinux+xattrs+sha256
 # This gets new/removes-old filenames daily.
 !/var/log/sa/
 # As we are checking it, we've truncated yesterdays size to zero.
-!/var/log/aide.log
+#!/var/log/aide.log
 
 # auditing
 # AIDE produces an audit record, so this becomes perpetual motion.
@@ -198,7 +198,7 @@ DATAONLY =  p+n+u+g+s+acl+selinux+xattrs+sha256
 /etc/audit/ CONTENT_EX
 /etc/audisp/ CONTENT_EX
 /etc/libaudit.conf$ CONTENT_EX
-/etc/aide.conf$  CONTENT_EX
+#/etc/aide.conf$  CONTENT_EX
 
 # System logs
 /etc/rsyslog.conf$ CONTENT_EX
@@ -288,7 +288,7 @@ DATAONLY =  p+n+u+g+s+acl+selinux+xattrs+sha256
 /etc/avahi/ CONTENT_EX
 
 # web server
-/etc/httpd/ CONTENT_EX
+#/etc/httpd/ CONTENT_EX
 
 # dns
 /etc/named/ CONTENT_EX
@@ -310,4 +310,14 @@ DATAONLY =  p+n+u+g+s+acl+selinux+xattrs+sha256
 #=/home           DIR
 
 # Ditto /var/log/sa/ same reason...
-!/var/log/httpd/
+#!/var/log/httpd/
+
+# include files
+{% for item in aide_include_files %}
+{{ item }}
+{% endfor %}
+
+# exclude files
+{% for item in aide_exclude_files %}
+!{{ item }}
+{% endfor %}

@@ -1,0 +1,6 @@
+---
+aide_include_files:
+  - /etc/aide.conf$  CONTENT_EX
+aide_exclude_files:
+  - /root/\.ansible.*
+  - /var/log/aide.log
